@@ -1,8 +1,11 @@
 import pandas as pd
 from pathlib import Path
-import os
 
-data_path = Path("data/energy_pun_main_zones.csv")
+cur_path=Path(__file__).resolve().parent
+
+project_root = cur_path.parent
+
+data_path = project_root / "data" / "energy_pun_main_zones.csv"
 
 df=pd.read_csv(data_path)
 
