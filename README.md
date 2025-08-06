@@ -29,6 +29,6 @@ XGBoost-PUN-prediction/
 🔄 on going: engineering and model setup
 ⬜ Backtesting 
 
-## 📦 Requisiti
+## 📦 Requirements
 ```bash
 pip install -r requirements.txt
