@@ -1,6 +1,5 @@
 import pandas as pd
 from pathlib import Path
-import matplotlib.pyplot as plt
 from italian_holidays import italian_holidays
 
 cur_path=Path(__file__).resolve().parent
@@ -67,15 +66,7 @@ df.dropna(inplace=True)
 df.to_pickle(project_root / "data" / "processed_features.pkl")
 
 
-'''
-from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 
-fig, ax = plt.subplots(figsize=(10,6))
-plot_acf(df['PUN'],lags=340,ax=ax) 
-plt.show()
 
-fig, ax = plt.subplots(figsize=(10,6))
-plot_pacf(df['PUN'],lags=340,ax=ax) 
-plt.show()
 
-'''
+

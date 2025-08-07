@@ -27,7 +27,7 @@ XGBoost-PUN-prediction/
 ## 🚧 Project status
 ✅ Data collection
 🔄 on going: engineering and model setup
-⬜ Backtesting 
+🔄 on going: Backtesting 
 
 ## 📦 Requirements
 ```bash
