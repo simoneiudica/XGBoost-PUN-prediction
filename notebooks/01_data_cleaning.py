@@ -16,3 +16,5 @@ df['DATETIME'] = df['DATE']+pd.to_timedelta(df['HOUR'],unit='h')
 df.drop(columns=['DATE','HOUR','AUST','FRAN','GREC','SLOV','SVIZ','BSP','XAUS','XFRA','XGRE','IDX'],inplace=True)
 
 df=df.set_index('DATETIME')
+
+df.to_pickle(project_root / "data" / "pun_clean.pkl")
