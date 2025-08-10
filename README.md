@@ -19,7 +19,7 @@ This project implements a robust time series forecasting pipeline for Italian el
 ## 📊 Data & Features
 
 ### Data Source
-- **Primary:** Kaggle PUN Dataset (link)
+- **Primary:** Kaggle PUN Dataset ((https://www.kaggle.com/datasets/gianpieroandrenacci/energy-pun-main-zones/data?select=energy_pun_main_zones.csv))
 - **Period:** April 2004 - March 2023
 - **Frequency:** Hourly (165,793 observations)
 - **Coverage:** Italian electricity market prices
