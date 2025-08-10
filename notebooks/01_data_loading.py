@@ -21,6 +21,7 @@ df_pun.to_pickle(project_root / "data" / "processed_data" / "pun_clean.pkl")
 
 ######################## DAY AHEAD ITALIAN LOAD FORECASTS (TERNA)  ########################
 
+'''
 df_Terna = pd.read_excel(project_root / "data" / "raw_data" / "data.xlsx")
 
 df_Terna = df_Terna.iloc[1:]
@@ -37,6 +38,7 @@ df_Terna.drop(columns=['Total Load (GW)'],inplace=True)
 
 df_Terna = df_Terna.set_index('DATETIME')
 
-df_Terna.groupby([pd.Grouper(freq='h')]).sum()
+df_Terna = df_Terna.groupby([pd.Grouper(freq='h')]).sum()
 
-df_pun.to_pickle(project_root / "data" / "processed_data" / "Load_Forecasts.pkl")
+df_Terna.to_pickle(project_root / "data" / "processed_data" / "Load_Forecasts.pkl")
+'''
