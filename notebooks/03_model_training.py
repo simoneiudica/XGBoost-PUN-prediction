@@ -88,9 +88,6 @@ def run_backtesting(df, feature_cols, target_col,
         mae = mean_absolute_error(y_test, preds)
         rmse = np.sqrt(mean_squared_error(y_test, preds))
         
-        # MAPE handling with small values
-        mape_values = np.abs((y_test - preds) / np.where(y_test == 0, 1e-8, y_test)) * 100
-        mape = np.mean(mape_values[np.isfinite(mape_values)])
         
         # Save results
         result = {
@@ -100,7 +97,6 @@ def run_backtesting(df, feature_cols, target_col,
             'end_time': test.index[-1], 
             'mae': mae,
             'rmse': rmse,
-            'mape': mape,
             'mean_actual': y_test.mean(),
             'mean_predicted': preds.mean(),
             'train_samples': len(X_train),
@@ -133,13 +129,36 @@ def run_backtesting(df, feature_cols, target_col,
     
     return results_df, predictions_df
 
-def analyze_results(results_df, predictions_df):
+
+
+cur_path=Path(__file__).resolve().parent
+
+project_root = cur_path.parent
+
+df = pd.read_pickle(project_root / "data" / "processed_data" / "processed_features.pkl")
+
+
+feature_cols = ['year', 'month', 'season', 'day', 'weekday', 'is_weekend', 
+                'hour', 'is_holiday', 'lag_24', 'lag_48', 'lag_72', 'lag_168',
+                '1_day_mean', '1_day_std', '7_day_mean', '7_day_std', 
+                '1_day_trend', '7_day_trend', 'trend_ratio']
+
+target_col = 'PUN'
+
+results, predictions = run_backtesting(
+    df, feature_cols, target_col,
+    train_days=365,
+    test_days=1,
+    step_days=1,
+    retrain_freq=7  
+)
+
+def analyze_results(results_df):
     """Analysis of the results"""
     
     print("\n=== PERFORMANCE OVERVIEW ===")
     print(f"MAE: {results_df['mae'].mean():.2f} ± {results_df['mae'].std():.2f}")
     print(f"RMSE: {results_df['rmse'].mean():.2f} ± {results_df['rmse'].std():.2f}")
-    print(f"MAPE: {results_df['mape'].mean():.1f}% ± {results_df['mape'].std():.1f}%")
     
     # Seasonal Performance
     if len(results_df) > 50:
@@ -162,30 +181,9 @@ def analyze_results(results_df, predictions_df):
     
     return results_df.describe()
 
-cur_path=Path(__file__).resolve().parent
-
-project_root = cur_path.parent
-
-df = pd.read_pickle(project_root / "data" / "processed_features.pkl")
-
-
-feature_cols = ['year', 'month', 'season', 'day', 'weekday', 'is_weekend', 
-                'hour', 'is_holiday', 'lag_24', 'lag_48', 'lag_72', 'lag_168',
-                '1_day_mean', '1_day_std', '7_day_mean', '7_day_std', 
-                '1_day_trend', '7_day_trend', 'trend_ratio']
-
-target_col = 'PUN'
-
-results, predictions = run_backtesting(
-    df, feature_cols, target_col,
-    train_days=365,
-    test_days=1,
-    step_days=1,
-    retrain_freq=7  
-)
-
-summary = analyze_results(results, predictions)
+summary = analyze_results(results)
 
 results.to_pickle(project_root / "results" / "training_summary.pkl")
 
 predictions.to_pickle(project_root / "results" / "actual_vs_forecast.pkl")
+
