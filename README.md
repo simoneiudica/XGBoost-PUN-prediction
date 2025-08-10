@@ -99,7 +99,7 @@ XGBoost-PUN-prediction/
 │
 ├── data/                    # Raw and processed data
 ├── notebooks/               
-│   ├── 01_data_exploration.py
+│   ├── 01_data_loading.py
 │   ├── 02_feature_engineering.py
 │   ├── 03_model_training.py
 │   └── 04_reporting_and_visualizations.py
