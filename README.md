@@ -12,7 +12,7 @@ This project implements a robust time series forecasting pipeline for Italian el
 - **Root Mean Squared Error:** 10.50 ± 11.80 €/MWh
 - **Accuracy Distribution:** 79.3% of days with MAE < 10 €/MWh
 
-![Dashboard](reports/dashboard.png)
+![Dashboard_2](reports/dashboard.png)
 
 *Comprehensive performance analysis showing temporal stability and peak-hour challenges*
 
