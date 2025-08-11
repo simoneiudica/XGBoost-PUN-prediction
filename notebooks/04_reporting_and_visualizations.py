@@ -1,6 +1,6 @@
 import pandas as pd 
 from pathlib import Path
-from sklearn.metrics import mean_absolute_error, mean_squared_error,r2_score
+from sklearn.metrics import r2_score
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -73,7 +73,7 @@ def create_professional_plots(results_df, predictions_df, model_name="XGBoost"):
     plt.title('Actual vs Predicted Prices', fontsize=14, fontweight='bold')
     
     # R² annotation
-    r2 = np.corrcoef(sample_pred['actual'], sample_pred['predicted'])[0,1]**2
+    r2 = r2_score(predictions_df['actual'], predictions_df['predicted'])
     plt.text(0.05, 0.95, f'R² = {r2:.3f}', transform=plt.gca().transAxes, 
              bbox=dict(boxstyle="round", facecolor='wheat', alpha=0.8))
     

@@ -4,7 +4,7 @@ Day-ahead forecasting of "Prezzo Unico Nazionale" (PUN) - the hourly electricity
 
 ## 🎯 Project Overview
 
-This project implements a robust time series forecasting pipeline for Italian electricity prices, achieving 8.5 €/MWh MAE with 94.7% correlation across an 18-year backtesting period (2005-2023).
+This project implements a robust time series forecasting pipeline for Italian electricity prices, achieving 8.5 €/MWh MAE with 95.2% coefficient of determination across an 18-year backtesting period (2005-2023).
 
 ## 🏆 Key Results
 
@@ -81,12 +81,11 @@ This project implements a robust time series forecasting pipeline for Italian el
 #### Immediate Priorities:
 - [ ] **Feature Importance Analysis** - SHAP values and XGBoost built-in importance
 - [ ] **European Market Integration** - German wind, cross-border flows, TTF gas prices, Switzerland electricity prices
-- [ ] **Hyperparameter Optimization** - Automated tuning with cross-validation
+- [ ] **Hyperparameter Optimization** - Automated tuning with cross-validation using OpTuna library
 - [ ] **Residual Analysis** - Ljung-Box test, autocorrelation diagnostics
 
 #### Advanced Enhancements:
 - [ ] **Ensemble Methods** - Combine XGBoost, LightGBM, Random Forest
-- [ ] **Hyperparameters optimization** - Using OpTuna library
 - [ ] **Regime Detection** - Handle market state changes automatically
 - [ ] **Risk Metrics** - VaR, Expected Shortfall for trading applications
 - [ ] **Real-time Pipeline** - Production-ready forecasting system
